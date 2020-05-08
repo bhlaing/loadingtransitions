@@ -1,2 +1,2 @@
 ## A simple project to demonstrate how to animate loading wheel transitions 
-![](loading3.png)
+![](loading3.gif)
