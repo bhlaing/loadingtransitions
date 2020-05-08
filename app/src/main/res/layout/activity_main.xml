@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/plainIndicatorControls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/successButton"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="Success" />
+
+        <Button
+            android:id="@+id/deniedButton"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="Denied" />
+
+        <Button
+            android:id="@+id/resetSimpleLoadingIndicatorButton"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="Reset" />
+    </LinearLayout>
+
+
+    <com.simple.loadingtransition.SimpleLoadingIndicator
+        android:id="@+id/simpleLoadingIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/plainIndicatorControls"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
+
+    <LinearLayout
+        android:id="@+id/lockIndicatorControls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/simpleLoadingIndicator"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/successLockButton"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="Success" />
+
+        <Button
+            android:id="@+id/deniedLockButton"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="Denied" />
+
+        <Button
+            android:id="@+id/resetLockLoadingIndicatorButton"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="Reset" />
+    </LinearLayout>
+
+    <com.simple.loadingtransition.LockLoadingIndicator
+        android:id="@+id/lockLoadingIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lockIndicatorControls"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
+
+</RelativeLayout>
