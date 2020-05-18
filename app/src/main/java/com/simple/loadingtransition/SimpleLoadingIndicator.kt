@@ -6,6 +6,8 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.BounceInterpolator
+import android.view.animation.CycleInterpolator
+import android.view.animation.OvershootInterpolator
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
@@ -58,7 +60,7 @@ class SimpleLoadingIndicator: RelativeLayout {
             // Hide loading indicator and make intended image view visible
             // at the beginning of this transition
             withStartAction {
-                loadingIndicator.visibility = View.GONE
+                loadingIndicator.visibility = View.INVISIBLE
                 intendedView.visibility = View.VISIBLE
             }
 
