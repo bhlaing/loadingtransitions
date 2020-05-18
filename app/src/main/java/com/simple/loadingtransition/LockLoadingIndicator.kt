@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
+import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresApi
 
 class LockLoadingIndicator: RelativeLayout {
@@ -22,94 +23,50 @@ class LockLoadingIndicator: RelativeLayout {
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
     super(context, attrs, defStyleAttr, defStyleRes)
 
-    private var lockImageView: ImageView
-    private var unlockImageView: ImageView
     private var loadingIndicator: ProgressBar
-    private var circularBackground: ImageView
+    private var centerLockView: ImageView
 
     init {
         LayoutInflater.from(context).inflate(R.layout.progress_dialog_lock_unlock, this, true)
 
-        lockImageView = findViewById(R.id.successImageView)
-        unlockImageView = findViewById(R.id.deniedImageView)
-        loadingIndicator = findViewById(R.id.loadingIndicator)
-        circularBackground = findViewById(R.id.successCircleView)
+        loadingIndicator = findViewById(R.id.spinningIndicator)
+        centerLockView = findViewById(R.id.centerLockView)
     }
 
     // region Success
-    fun transitionToUnlocked() =
-        unlockImageView.animate().apply {
+    fun transitionToUnlocked() {
+        centerLockView.background =  safelyGetDrawable(R.drawable.animation_list_success)
 
-            // reveal unlocked view slowly
-            // over 0.8 seconds duration
-            duration = 800
-            alpha = 1.0f
+        (centerLockView.background as AnimationDrawable).start()
 
-            withStartAction {
-                hideLockViewAndLoadingWheel()
-                startSuccessBackgroundTransition()
-            }
-
-
-        }.start()
-
-
-    private fun startSuccessBackgroundTransition() =
-        with(circularBackground.background as AnimationDrawable) {
-            start()
-        }
-
-    private fun hideLockViewAndLoadingWheel() =
-        // slowly fade out lock view
-        // over 0.8 seconds duration
-        lockImageView.animate().apply {
-            duration = 800
-            alpha = 0.0f
-
-            withEndAction {
-                loadingIndicator.visibility = GONE
-            }
-        }
+        slowlyHideLoadingIndicator()
+    }
     // endregion
 
     // region Denied
-    fun transitionToDenied() = startDeniedBackgroundTransition().also {
-        loadingIndicator.visibility = GONE
-    }
+    fun transitionToDenied() {
+        centerLockView.background = safelyGetDrawable(R.drawable.animation_list_denied)
+        (centerLockView.background as AnimationDrawable).start()
 
-    private fun startDeniedBackgroundTransition() {
-        circularBackground.background = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-             context.getDrawable(R.drawable.animation_list_denied)
-        } else {
-            resources.getDrawable(R.drawable.animation_list_denied)
-        }
-
-        val animationDrawable= circularBackground.background as AnimationDrawable
-        animationDrawable.start()
+        slowlyHideLoadingIndicator()
     }
     // endregion
 
+    private fun safelyGetDrawable(@DrawableRes drawableId: Int) =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        context.getDrawable(drawableId)
+    } else {
+        resources.getDrawable(drawableId)
+    }
+
+    private fun slowlyHideLoadingIndicator() =
+        loadingIndicator.animate().apply {
+            alpha(0.0f)
+            duration = 500
+        }.start()
+
     fun reset() {
-        // resetting image to lock image
-        unlockImageView.alpha = 0.0f
-        lockImageView.alpha = 1.0f
-
-        // reset circle image to gray
-        val animationDrawable= circularBackground.background as AnimationDrawable
-        animationDrawable.stop()
-        animationDrawable.selectDrawable(0)
-
-        // make spinning wheel visible
-        loadingIndicator.visibility = VISIBLE
-
-        // reset alpha for self
-        alpha = 1.0f
-
-        // reset background to default success state
-        circularBackground.background = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            context.getDrawable(R.drawable.animation_list_success)
-        } else {
-            resources.getDrawable(R.drawable.animation_list_success)
-        }
+        centerLockView.background = safelyGetDrawable(R.drawable.lock_default)
+        loadingIndicator.alpha = 1.0f
     }
 }

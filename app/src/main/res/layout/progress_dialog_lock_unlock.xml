@@ -6,36 +6,18 @@
     android:background="@drawable/rectangle_background">
 
     <ProgressBar
-        android:id="@+id/loadingIndicator"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:indeterminateDrawable="@drawable/spinning_wheel_yellow"
-        android:layout_gravity="center" />
+        android:id="@+id/spinningIndicator"
+        android:layout_width="76dp"
+        android:layout_height="76dp"
+        android:layout_gravity="center"
+        android:indeterminateDrawable="@drawable/spinning_wheel_yellow" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/successCircleView"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:background="@drawable/animation_list_denied"
-        android:layout_gravity="center" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/successImageView"
+        android:id="@+id/centerLockView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:src="@drawable/ic_locked"
-        android:layout_gravity="center" />
-
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/deniedImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_unlocked"
-        android:background="@android:color/transparent"
-        android:alpha="0"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:background="@drawable/lock_default" />
 
 </FrameLayout>
 
