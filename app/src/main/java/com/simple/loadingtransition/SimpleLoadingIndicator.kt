@@ -6,15 +6,10 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.BounceInterpolator
-import android.view.animation.CycleInterpolator
-import android.view.animation.OvershootInterpolator
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.annotation.RequiresApi
 
-class SimpleLoadingIndicator: RelativeLayout {
+class SimpleLoadingIndicator: FrameLayout {
     constructor(context: Context) : super(context)
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)

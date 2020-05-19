@@ -5,13 +5,13 @@ import android.graphics.drawable.AnimationDrawable
 import android.os.Build
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.ProgressBar
-import android.widget.RelativeLayout
 import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresApi
 
-class LockLoadingIndicator: RelativeLayout {
+class LockLoadingIndicator: FrameLayout {
     constructor(context: Context) : super(context)
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
