@@ -1,5 +1,5 @@
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android"
     android:oneshot="true">
-    <item android:drawable="@drawable/lock_default" android:duration="300" />
+    <item android:drawable="@drawable/lock_default" android:duration="200" />
     <item android:drawable="@drawable/lock_success" android:duration="1000" />
 </animation-list>
