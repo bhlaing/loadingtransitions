@@ -36,7 +36,6 @@ class LockLoadingIndicator: FrameLayout {
     // region Success
     fun transitionToUnlocked() {
         centerLockView.background =  safelyGetDrawable(R.drawable.animation_list_success)
-
         (centerLockView.background as AnimationDrawable).start()
 
         slowlyHideLoadingIndicator()
